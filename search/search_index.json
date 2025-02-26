@@ -1,0 +1,1 @@
+{"config":{"lang":["en"],"separator":"[\\s\\-]+","pipeline":["stopWordFilter"]},"docs":[{"location":"","title":"Welcome to MkDocs","text":"<pre><code>pie title Which animals do you prefer as pets?\n    \"Dogs\" : 386\n    \"Cats\" : 85\n    \"Rabbits\" : 53\n    \"Hamsters\" : 101\n</code></pre>"}]}
