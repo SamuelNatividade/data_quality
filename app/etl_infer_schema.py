@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from pathlib import Path
 import pandera as pa
 import os 
-from schema_crm import DataFrameSchema
 
 def load_settings():
     """Carrega as configurações a partir de variáveis de ambiente."""
@@ -20,7 +19,7 @@ def load_settings():
     }
     return settings
 
-pa.check_output(DataFrameSchema)
+
 def extrair_do_sql(query: str) -> pd.DataFrame:
     """Extrai os dados de um banco de dados SQL."""
     settings = load_settings()
@@ -36,5 +35,8 @@ def extrair_do_sql(query: str) -> pd.DataFrame:
 if __name__ == "__main__":
     query = "SELECT * FROM produtos_bronze limit 10"
     df_crm = extrair_do_sql(query)
-    print(df_crm)
-
+    schema_crm = pa.infer_schema(df_crm)
+    with open("schema_crm.py", "w", encoding = "utf-8") as arquivo:
+        arquivo.write(schema_crm.to_script())
+    print(schema_crm)
+    
